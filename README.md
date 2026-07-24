@@ -20,6 +20,6 @@ A collection of lessons, notes, and code from University of San Carlos (USC)'s D
 - Computer Word
 - Binary Trees
 - Graphs
-- Djikstras
-- Floyd Warshalls
-- Belmans
+- Djikstra's Algorithm
+- Floyd Warshall Algorithm
+- Bellman-Ford Algorithm
