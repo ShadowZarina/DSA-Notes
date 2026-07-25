@@ -41,7 +41,21 @@ PROCESS:
   - We update the value of dist[i][j] as dist[i][k] + dist[k][j], if dist[i][j] > dist[i][k] + dist[k][j]
 6. Repeat this process for each vertex k until all intermediate possibilities have been considered.
 
-# BELMANS
+# BELLMAN-FORD
+
+- The Bellman-Ford algorithm is a single-source shortest path algorithm that computes the shortest distance from a starting node to all other nodes in a weighted graph.
+- It is uniquely versatile because it can handle negative edge weights and is used to detect negative weight cycles.
+
+HOW IT WORKS:
+- The algorithm uses dynamic programming to process and iteratively "relax" all the edges in the graph.
+- Edge relaxation means checking if the path to a destination node can be shortened by going through the starting node.
+
+1. Initialization: Set the distance to the source node to 0 and the distances to all other nodes to infinity (∞).
+2. Relaxation Pass: Iterate through every edge in the graph and update the distance if \(dist[v] > dist[u] + weight(u, v)\).
+3. Repeat: Repeat the entire relaxation process exactly |V| - 1 times, where |V| is the number of vertices in the graph.
+   - This ensures the shortest paths are correctly propagated since no simple path can have more than |V| - 1 edges.
+4. Negative Cycle Detection: After |V| - 1 iterations, perform one final pass through all the edges.
+   - If any distance value is updated, it indicates the presence of a negative weight cycle.
 
 # DIFFERENCE BETWEEN ALL 3
 
@@ -49,4 +63,5 @@ PROCESS:
 [DSA Shortest Paths](https://www.w3schools.com/dsa/dsa_theory_graphs_shortestpath.php)<br>
 [Djikstra's Algorithm](https://www.w3schools.com/dsa/dsa_algo_graphs_dijkstra.php)<br>
 [Floyd Warshall Algorithm](https://www.programiz.com/dsa/floyd-warshall-algorithm)<br>
-[Bellman-Ford Algorithm](https://www.w3schools.com/dsa/dsa_algo_graphs_bellmanford.php)
+[Bellman-Ford Algorithm](https://www.w3schools.com/dsa/dsa_algo_graphs_bellmanford.php)<br>
+[Bellman-Ford Sample Problems](https://www.geeksforgeeks.org/dsa/bellman-ford-algorithm-dp-23/)
