@@ -71,8 +71,16 @@ int main()
 # SAMPLE CODE 2
 
 # SORTING
+1. Bubble Sort
+2. Insertion Sort
+3. Selection Sort
 
-# SYNTAX
+1. Bubble Sort
+   - Steps through the array, compares adjacent elements, and swaps them if they are in the wrong order. The largest elements "bubble" to the end of the array pass by pass.
+2. Insertion Sort
+   - Divides the array into sorted and unsorted regions. It picks elements from the unsorted region and inserts them into the correct location within the sorted region by shifting elements.
+3. Selection Sort
+   - Iterates through the array to find the smallest (minimum) element from the unsorted section and swaps it with the first element of that section.
 
 ## BUBBLE SORT
 
