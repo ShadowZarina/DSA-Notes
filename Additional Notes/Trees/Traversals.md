@@ -23,6 +23,109 @@ There are three different types of DFS traversals:
 
 # POST-ORDER TRAVERSAL
 
+A binary tree is a hierarchical data structure in computer science. 
+- Each node in a binary tree can have at most two children: a left child and a right child.
+  
+## Example
+
+Input:   
+     1        
+   /   \       
+  2    3      
+ / \  / \    
+4  5 6   7
+
+Output:
+- Postorder Traversal : 4 5 2 6 7 3 1
+- Postorder Tree Traversal in Binary Tree in C
+- The postorder traversal is a way of visiting all the nodes of a binary tree in a specific order.
+- It involves visiting the left subtree first, followed by the right subtree, and finally the root node.
+
+## Workflow of Postorder Traversal
+
+Flowchart-PostOrder_Traversal<br>
+Left-->right-->root
+
+## Algorithm for Postorder Traversal in C
+Following is the algorithm for the postorder traversal of the binary tree in C:
+
+Start
+- Traverse left subtree using recursion.
+- Traverse right subtree using recursion
+- Visit the root node
+- Repeat steps 3-5 until root node != NULL
+Stop
+- C Program for Postorder Traversal in a Binary Tree
+- The following program demonstrates how we can implement the postorder traversal in a binary tree in C:
+
+```
+// C Program for Postorder Traversal in a Binary Tree
+#include <stdio.h>
+#include <stdlib.h>
+
+// __________ CODE FOR BINARY TREE IMPLEMENTATION __________
+
+// Define the structure for a binary tree node
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+
+// Function to create a new node in a Binary Tree
+struct Node* createNode(int data)
+{
+    // Allocate memory for the new node
+    struct Node* newNode
+        = (struct Node*)malloc(sizeof(struct Node));
+    // Initialize node data and children pointers
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+// __________ CODE FOR POSTORDER TRAVERSAL  __________
+
+// Function to perform postorder traversal
+void postorderTraversal(struct Node* root)
+{
+    if (root != NULL) {
+        postorderTraversal(root->left);
+        postorderTraversal(root->right);
+        printf("%d ", root->data);
+    }
+}
+
+// driver code
+int main()
+{
+    struct Node* root = NULL;
+
+    // Create the binary tree
+    /*     1
+                 /   \
+             2    3
+                / \  / \
+                4  5 6  7
+    */
+    root = createNode(1);
+    root->left = createNode(2);
+    root->right = createNode(3);
+    root->left->left = createNode(4);
+    root->left->right = createNode(5);
+    root->right->left = createNode(6);
+    root->right->right = createNode(7);
+
+    // Perform postorder traversal
+    printf("Postorder traversal of the binary tree is:\n");
+    postorderTraversal(root);
+    printf("\n");
+
+    return 0;
+}
+```
+
 # REFERENCES
 
 [Pre-Order Traversal 1](https://www.w3schools.com/dsa/dsa_algo_binarytrees_preorder.php)<br>
