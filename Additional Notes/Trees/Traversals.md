@@ -15,10 +15,17 @@ There are three different types of DFS traversals:
 - In-order
 - Post-order
 
+# PRE-ORDER TRAVERSAL
+
+
+# IN-ORDER TRAVERSAL
+
+
 # POST-ORDER TRAVERSAL
 
 # REFERENCES
 
-[Pre-Order Traversal](https://www.w3schools.com/dsa/dsa_algo_binarytrees_preorder.php)<br>
+[Pre-Order Traversal 1](https://www.w3schools.com/dsa/dsa_algo_binarytrees_preorder.php)<br>
 [In-Order Traversal](https://www.w3schools.com/dsa/dsa_algo_binarytrees_inorder.php)<br>
 [Post-Order Traversal](https://www.w3schools.com/dsa/dsa_algo_binarytrees_postorder.php)
+
