@@ -19,7 +19,85 @@ There are three different types of DFS traversals:
 
 
 # IN-ORDER TRAVERSAL
+- Inorder traversal is a DFS traversal technique where we try to traverse as deep as possible in the tree from the current node.
+- In the inorder traversal, we first visit all the left subtree, then visit the current node and at last, we visit the right subtree.
 
+## Inorder Traversal Overview
+1. Visit the left subtree.
+2. Visit the root node.
+3. Visit the right subtree.
+
+## Example Algorithm
+![Example Tree](https://media.geeksforgeeks.org/wp-content/uploads/20240430112609/ex1.png)
+
+1. Start at the root node (1).
+2. Visit the left subtree of the root (2).
+3. Visit the left subtree of 2(4) then 4 does not have any children so print it.
+4. Backtrack to the node (2) and print it.
+5. Move to the right subtree of the node 2 (5). Print it.
+6. Backtrack to the root node (1).
+7. Move to the right subtree of the node 1 (3).
+8. Visit the left subtree of 3 and there is no nodes.
+9. Visit the node (3) and print it.
+10. The in-order traversal of the tree is: 4, 2, 5, 1, 3
+
+## Example Code
+
+```
+// C program to show how to implement the binary tree
+// traversal
+#include <stdio.h>
+#include <stdlib.h>
+​
+// node of the tree
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+​
+// utility function to create a node
+struct Node* createNode(int data)
+{
+    struct Node* newNode
+        = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+​
+// Function to perform inorder traversal
+void inorderTraversal(struct Node* root)
+{
+    // cheking if the current node is NULL
+    if (!root)
+        return;
+    // traversing left subtree
+    inorderTraversal(root->left);
+    // traversing current node
+    printf("%d ", root->data);
+    // traversing right subtree
+    inorderTraversal(root->right);
+}
+​
+int main()
+{
+    // Example tree creation
+    struct Node* root = createNode(1);
+    root->left = createNode(2);
+    root->right = createNode(3);
+    root->left->left = createNode(4);
+    root->left->right = createNode(5);
+​
+    printf("Inorder Traversal: ");
+    inorderTraversal(root);
+    return 0;
+}
+```
+
+Output
+- Inorder Traversal: 4 2 5 1 3 
 
 # POST-ORDER TRAVERSAL
 
