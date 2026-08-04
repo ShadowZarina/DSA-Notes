@@ -17,6 +17,7 @@ There are three different types of DFS traversals:
 
 # PRE-ORDER TRAVERSAL
 
+![Example Tree](https://media.geeksforgeeks.org/wp-content/uploads/20240426095901/preorderout.png)
 
 # IN-ORDER TRAVERSAL
 - Inorder traversal is a DFS traversal technique where we try to traverse as deep as possible in the tree from the current node.
@@ -126,6 +127,8 @@ Left-->right-->root
 
 ## Algorithm for Postorder Traversal in C
 Following is the algorithm for the postorder traversal of the binary tree in C:
+
+![Workflow of Postorder Traversal](https://media.geeksforgeeks.org/wp-content/uploads/20240526161246/Flowchart-PostOrder_Traversal.png)
 
 Start
 - Traverse left subtree using recursion.
