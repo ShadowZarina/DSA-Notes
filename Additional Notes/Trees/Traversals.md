@@ -128,7 +128,10 @@ int main()
 
 # REFERENCES
 
-[Pre-Order Traversal 1](https://www.w3schools.com/dsa/dsa_algo_binarytrees_preorder.php)<br>
+[Pre-Order Traversal](https://www.w3schools.com/dsa/dsa_algo_binarytrees_preorder.php)<br>
+[Pre-Order Traversal in C](https://www.geeksforgeeks.org/c/preorder-tree-traversal-of-binary-tree-in-c/)<br>
 [In-Order Traversal](https://www.w3schools.com/dsa/dsa_algo_binarytrees_inorder.php)<br>
-[Post-Order Traversal](https://www.w3schools.com/dsa/dsa_algo_binarytrees_postorder.php)
+[In-Order Traversal in C](https://www.geeksforgeeks.org/c/inorder-tree-traversal-in-binary-tree-in-c/)<br>
+[Post-Order Traversal](https://www.w3schools.com/dsa/dsa_algo_binarytrees_postorder.php)<br>
+[Post-Order Traversal in C](https://www.geeksforgeeks.org/c/postorder-tree-traversal-in-binary-tree-in-c/)
 
