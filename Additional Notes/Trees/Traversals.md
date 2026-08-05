@@ -16,24 +16,22 @@ There are three different types of DFS traversals:
 - Post-order
 
 # PRE-ORDER TRAVERSAL
-A binary tree is a hierarchical data structure composed of nodes where each node has at most two children. It can referred to as the left child and the right child. Due to having a non-linear structure, a binary tree can be traversed in multiple ways. One such way is preorder traversal which is a Depth First (DFS) Traversal technique.
 
-In this article, we will learn how to implement preorder binary tree traversal in C and analyze its space and time complexity.
+A binary tree is a hierarchical data structure composed of nodes where each node has at most two children. It can referred to as the left child and the right child. 
+Due to having a non-linear structure, a binary tree can be traversed in multiple ways. One such way is preorder traversal which is a Depth First (DFS) Traversal technique.<br><br>
 
-Preorder Traversal of Binary Tree in C
 Preorder traversal is a DFS tree traversal technique that first visits the current node, traverses the left sub-tree as far as it can and then traverses the right sub-tree.
 
-Pre-order Traversal
-Visit the root node.
-Then, recursively traverse the left subtree.
-Finally, recursively traverse the right subtree.
-Consider the following example,
+## Algorithm
+1. Visit the root node.
+2. Then, recursively traverse the left subtree.
+3. Finally, recursively traverse the right subtree.
 
-preorderout
+## Algorithm for Pre-Order Binary Tree Traversal
 
-For preorder traversal of the above tree:
+![Example Tree](https://media.geeksforgeeks.org/wp-content/uploads/20240426095901/preorderout.png)
 
-Start at the root node (1).
+1. Start at the root node (1).
 Visit the root node then print it.
 Traverse the left subtree of the root (2).
 Visit the root of the left subtree (2) and print it.
@@ -44,9 +42,6 @@ Traverse the right subtree of root (3).
 Visit the root of the right subtree (3) and print it.
 The pre-order traversal of the binary tree: 1, 2, 4, 5, 3
 
-
-
-Algorithm for Pre-Order Binary Tree Traversal
 Following is the algorithm of the pre-order binary tree traversal:
 
 preOrder(root) {
@@ -57,10 +52,10 @@ preOrder(root) {
      preOrder(root->rightChild)
      return
 }
-C++ Program to Implement Preorder Traversal of the Binary Tree
 
+## Example Code
 
-
+```
 // C Program to illustrate how to implement the preorder
 // binary tree traversal
 #include <stdio.h>
@@ -115,10 +110,10 @@ int main()
 ​
     return 0;
 }
+```
 
-Output
-Preorder Traversal: 1 2 4 5 3 
-![Example Tree](https://media.geeksforgeeks.org/wp-content/uploads/20240426095901/preorderout.png)
+Output:
+- Preorder Traversal: 1 2 4 5 3 
 
 # IN-ORDER TRAVERSAL
 - Inorder traversal is a DFS traversal technique where we try to traverse as deep as possible in the tree from the current node.
