@@ -32,18 +32,18 @@ Preorder traversal is a DFS tree traversal technique that first visits the curre
 ![Example Tree](https://media.geeksforgeeks.org/wp-content/uploads/20240426095901/preorderout.png)
 
 1. Start at the root node (1).
-Visit the root node then print it.
-Traverse the left subtree of the root (2).
-Visit the root of the left subtree (2) and print it.
-Traverse the left subtree of the node 2(4) and visit 4 and print it.
-Backtrack to the node 2 and traverse its right subtree (5) and visit and print it.
-Backtrack to the root node (1).
-Traverse the right subtree of root (3).
-Visit the root of the right subtree (3) and print it.
-The pre-order traversal of the binary tree: 1, 2, 4, 5, 3
+2. Visit the root node then print it.
+3. Traverse the left subtree of the root (2).
+4. Visit the root of the left subtree (2) and print it.
+5. Traverse the left subtree of the node 2(4) and visit 4 and print it.
+6. Backtrack to the node 2 and traverse its right subtree (5) and visit and print it.
+7. Backtrack to the root node (1).
+8. Traverse the right subtree of root (3).
+9. Visit the root of the right subtree (3) and print it.
+10. The pre-order traversal of the binary tree: 1, 2, 4, 5, 3
 
 Following is the algorithm of the pre-order binary tree traversal:
-
+```
 preOrder(root) {
      If root is NULL
           return
@@ -52,6 +52,7 @@ preOrder(root) {
      preOrder(root->rightChild)
      return
 }
+```
 
 ## Example Code
 
