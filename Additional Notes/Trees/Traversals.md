@@ -201,22 +201,8 @@ Output
 
 A binary tree is a hierarchical data structure in computer science. 
 - Each node in a binary tree can have at most two children: a left child and a right child.
+- Postorder traversal involves visiting the left subtree first, followed by the right subtree, and finally the root node.
   
-## Example
-
-Input:   
-     1        
-   /   \       
-  2    3      
- / \  / \    
-4  5 6   7
-
-Output:
-- Postorder Traversal : 4 5 2 6 7 3 1
-- Postorder Tree Traversal in Binary Tree in C
-- The postorder traversal is a way of visiting all the nodes of a binary tree in a specific order.
-- It involves visiting the left subtree first, followed by the right subtree, and finally the root node.
-
 ## Workflow of Postorder Traversal
 
 Flowchart-PostOrder_Traversal<br>
@@ -236,6 +222,18 @@ Stop
 - C Program for Postorder Traversal in a Binary Tree
 - The following program demonstrates how we can implement the postorder traversal in a binary tree in C:
 
+## Example
+
+Input:   
+     1        
+   /   \       
+  2    3      
+ / \  / \    
+4  5 6   7
+
+Output:
+- Postorder Traversal : 4 5 2 6 7 3 1
+  
 ```
 // C Program for Postorder Traversal in a Binary Tree
 #include <stdio.h>
