@@ -10,3 +10,5 @@
 Structure and Traversal
 - Normal Linked List: Has a clear start and a dead-end NULL tail. Traversal stops when you hit NULL.
 - Circular Linked List: Has no end. Traversal must check if you have looped back to your starting node to avoid infinite loops
+
+
