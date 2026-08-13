@@ -14,6 +14,7 @@ A collection of lessons, notes, and code from University of San Carlos (USC)'s D
 - Stacks
 - Queues
 - Dictionaries
+- Sets & Vector Sets
 - Open Hashing
 - Closed Hashing
 - Trees
