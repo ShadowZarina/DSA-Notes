@@ -22,6 +22,7 @@ typedef struct Node {
   struct Node *next;
 } node, *nodePtr;
 
+
 nodePtr createNode (int data) {
   nodePtr newNode = malloc(sizeof(node));
   newNode->data = data;
@@ -29,12 +30,58 @@ nodePtr createNode (int data) {
   return newNode;
 }
 
-nodePtr insertAtBeginning() {
-  
+
+nodePtr insertAtBeginning (nodePtr tail, int data) { // PN
+  nodePtr newNode = createNode (data);
+  if (tail == NULL) // list is empty
+  {
+    newNode->next = newNode;
+    return newNode;
+  }
+
+  newNode->next = tail->next;
+  tail->next = newNode;
+  return tail;
 }
 
-int main() {
 
+nodePtr insertAtEnd (nodePtr tail, int data) {
+  nodePtr newNode = createNode (data);
+  if (tail == NULL) // list is empty
+  {
+    newNode->next = newNode;
+    return newNode;
+  }
+
+  newNode->next = tail->next;
+  tail->next = newNode;
+}
+
+
+nodePtr insertAtPosition (nodePtr tail, int data, int position) {
+  if (tail == NULL) 
+  {
+    printf("List is empty.");
+    return NULL;
+  }
+  if (position == 1) 
+  {
+    return insertAtBeginning (tail, data);
+  }
+
+  nodePtr temp = tail->next;
+  do {
+    temp = temp->next;
+  } while (temp != tail->next);
+
+  newNode->next = temp->next;
+  temp->next = newNode;
+  return tail;
+}
+
+
+int main() {
+  nodePtr tail = NULL;
 }
 
 
