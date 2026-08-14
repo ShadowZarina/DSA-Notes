@@ -13,6 +13,7 @@ Structure and Traversal
 
 # SAMPLE CODE
 
+```
 #include <stdio.h>
 
 // every time we refer to head we can just say "tail->next"
@@ -74,6 +75,12 @@ nodePtr insertAtPosition (nodePtr tail, int data, int position) {
     temp = temp->next;
   } while (temp != tail->next);
 
+ // ALTERNATIVE TO THE DO-WHILE LOOP
+
+  for (int i = 1; temp != NULL && i < position - 1; i++) {
+    temp = temp->next;
+  }
+
   newNode->next = temp->next;
   temp->next = newNode;
   return tail;
@@ -83,6 +90,6 @@ nodePtr insertAtPosition (nodePtr tail, int data, int position) {
 int main() {
   nodePtr tail = NULL;
 }
-
+```
 
 
