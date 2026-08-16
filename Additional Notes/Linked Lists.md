@@ -5,7 +5,6 @@ A linked list is a linear data structure made of nodes connected using pointers.
 Nodes are not stored in contiguous memory like arrays; they can be anywhere in memory.
 To access a node, we start from the head and traverse sequentially through the list.
 
-
 # SAMPLE CODE 1
 
 ```
