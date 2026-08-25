@@ -1,31 +1,31 @@
 #ifndef MYHEADER_H
 #define MYHEADER_H
-#include<stdbool.h>
 
-// START WITH THIS FILE; PLACE PROTOTYPES & STRUCTURES HERE
+#include <stdbool.h>
 
 typedef struct {
-	int *elems;
-	// don't do elems[] or *elems[]
-	int count;
-	int size;
+    int *elems;
+    int count;
+    int size;
 } List;
 
-// function declarations
+
+/* LIST CREATION */
+
 void initList(List *list, int size);
 List newList(int size);
+void freeList(List *list);
+
+
+/* INSERT */
 
 bool insertSorted(List *list, int item);
-void display(List list);
-// no need pointer for display as no values will change (retrieve only)
-
-// CHALLENGE 3: IMPLEMENT ALL OTHER FUNCTIONS
-// all inserts, all deletes (delete first, delete last, delete by index), 2 searches: return true or false, return index, count (no of occurrences)
-// create new header called statistics.h for the mode, median, mean
-
 bool insertFirst(List *list, int item);
 bool insertLast(List *list, int item);
 bool insertIndex(List *list, int item, int index);
+
+
+/* DELETE */
 
 bool deleteFirst(List *list);
 bool deleteLast(List *list);
@@ -34,8 +34,16 @@ bool deleteFirstOccur(List *list, int item);
 bool deleteLastOccur(List *list, int item);
 bool deleteAllOccur(List *list, int item);
 
+
+/* SEARCH */
+
 bool boolSearch(List list, int item);
 int indexSearch(List list, int item);
-int countOccur(List list);
+int countOccur(List list, int item);
+
+
+/* DISPLAY */
+
+void display(List list);
 
 #endif
