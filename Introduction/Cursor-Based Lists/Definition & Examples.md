@@ -148,4 +148,7 @@ int main(void) {
 }
 ```
 
-# Key TakeawaysNo Pointers Used: The next member is a pure integer tracking indices.Logical vs. Physical Order: Elements that are logically adjacent in the linked list do not need to be physically next to each other in the array.Memory Limits: The maximum capacity of all concurrent lists combined is bound by SPACE_SIZE.
+# Key Takeaways
+- No Pointers Used: The next member is a pure integer tracking indices.
+- Logical vs. Physical Order: Elements that are logically adjacent in the linked list do not need to be physically next to each other in the array.
+- Memory Limits: The maximum capacity of all concurrent lists combined is bound by SPACE_SIZE.
