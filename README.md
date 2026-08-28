@@ -8,6 +8,9 @@ A collection of lessons, notes, and code from University of San Carlos (USC)'s D
 ### PRE-MIDTERMS
 - Array Lists
 - Linked Lists
+- Cursor-Based Lists
+
+### MIDTERMS
 - Stacks
 - Queues
 - Cursor-Based
