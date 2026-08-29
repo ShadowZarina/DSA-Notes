@@ -18,6 +18,11 @@ A collection of lessons, notes, and code from University of San Carlos (USC)'s D
 - Trees
 - Graphs
 
+### PRE-FINALS
+
+### FINALS
+
+
 ## All Topics to Note
 - Linked Lists
 - Stacks
