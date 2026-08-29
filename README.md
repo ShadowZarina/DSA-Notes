@@ -13,12 +13,11 @@ A collection of lessons, notes, and code from University of San Carlos (USC)'s D
 ### MIDTERMS
 - Stacks
 - Queues
-- Cursor-Based
 - Dictionaries
-- Trees
-- Graphs
 
 ### PRE-FINALS
+- Trees
+- Graphs
 
 ### FINALS
 
