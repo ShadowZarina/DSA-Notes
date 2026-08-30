@@ -16,31 +16,34 @@ If n = 500:
 - O(log n) = 10
 
 ## EXAMPLE 1:
-
-For (i = 0; i < n; ++i)
-I = 0 -> executed 1 time
-I < n -> n + 1
+```
+for (i = 0; i < n; ++i)
+i = 0 -> executed 1 time
+i < n -> n + 1
 ++i -> n
-
-0 < 3
-1 < 3
-2 < 3
-3 < 3
+```
+- 0 < 3
+- 1 < 3
+- 2 < 3
+- 3 < 3<br>
 == a total of 4 runs
 
-Final notation: O(2n + 2) -> O(n)
+ Final notation: O(2n + 2) -> O(n)
 
 ## EXAMPLE 2:
-
-For (int i = 0; i < min(3,n); ++i)
-I = 0 -> executed 1 time
-I < min(3,n) -> executed 4 times max (regardless of value of n)
+```
+for (int i = 0; i < min(3,n); ++i)
+i = 0 -> executed 1 time
+i < min(3,n) -> executed 4 times max (regardless of value of n)
 ++i -> executed 3 times max
+```
 
 Final notation: O(7) -> O(1)
-Therefore a for loop doesn’t guarantee O(n) or greater.
+> Therefore a for loop doesn’t guarantee O(n) or greater.
 
-# ARRAYS WITH STRUCTURES
+# POINTERS
+
+## ARRAYS WITH STRUCTURES
 ```
 #define N 20
 Typedef struct {
@@ -56,8 +59,8 @@ The datatype of pList is List pointer
 
 ARRAYS BY NATURE CONTAIN ADDRESSES, NOT THE VALUES THEMSELVES
 
-Arr[0] is the same as *(arr+0)
-List arr[1] = 5; is the same as pList->arr[1] = 5; (SINCE PLIST POINTS TO LIST ARR)
+Arr[0] is the same as *(arr+0)<br>
+List arr[1] = 5; is the same as pList->arr[1] = 5; (SINCE PLIST POINTS TO LIST ARR)<br>
 OR (*pList).arr[1] = 5;
 
 ## EXAMPLE 1:
@@ -95,5 +98,3 @@ pList = malloc(sizeof(List))
 ```
 = the pList and array have fixed sizes, it will only change when the array is borrowing memory
 
-
-# POINTERS
