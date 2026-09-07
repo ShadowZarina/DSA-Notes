@@ -277,3 +277,10 @@ int main() {
 
 NEW.C
 HEADER.H
+
+# FILES
+
+new.c - hidden
+header.h - function prototypes
+main.c - main
+problem.c - answer
