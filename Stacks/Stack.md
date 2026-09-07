@@ -158,3 +158,122 @@ post-polish
 
 ## Stacks in Sorting
 - You only need 2 stacks to sort elements: 1 stack for elements that match CRITERIA, and 1 temporary stack for all elements that do NOT
+
+# ANDREA CODE
+
+MAIN.C
+
+#include<stdio.h>
+#include<stdbool.h>
+
+#define MAX 10
+
+typedef struct {
+    Student stud;
+    int top;
+} StackArray;
+
+typedef struct {
+    int ID;
+    char name[20];
+    char program[20];
+    int year;
+    char sex;
+} Student;
+
+void initStack(StackArray *s) {
+    s->top = -1;
+}
+
+bool isEmpty (StackArray s){
+    return (s->top == -1);
+}
+
+bool isFull (StackArray s){
+    return (s->top == MAX - 1);
+}
+
+bool push(StackArray *s, Student st) {
+    if (isFull(s)) {
+        printf("Stack Overflow!");
+        return;
+    }
+    printf("Pushed Student #%d into the stack", (s->top)++);
+    s->student[top] = st;
+    return true;
+}
+
+bool pop(StackArray *s) {
+    if (isEmpty(s)) {
+        printf("Stack Underflow!");
+        return;
+    }
+    printf("Popped Student #%d from the stack", (s->top)--);
+    return true;
+}
+
+// help me
+Student peek(StackArray s, Student st) {
+    printf("Student #%c\n", (s.top)+1);
+    printf("ID: %d\n", s.stud[top].ID);
+    printf("Name: %s\n", s.stud[top].name);
+    printf("Program: %s\n", s.stud[top].program);
+    printf("Year: %d\n", s.stud[top].year);
+    printf("Sex: %c\n", s.stud[top].sex);
+    return 
+}
+
+void visualize(StackArray s) {
+    int i;
+    for (i = 0; i < s->top; i++) {
+        printf("Student #%c\n", i+1);
+        printf("ID: %d\n", s.stud[i].ID);
+        printf("Name: %s\n", s.stud[i].name);
+        printf("Program: %s\n", s.stud[i].program);
+        printf("Year: %d\n", s.stud[i].year);
+        printf("Sex: %c\n", s.stud[i].sex);
+    }
+}
+
+int main() {
+    StackArray *s;
+    Student *st;
+    int choice;
+    int n = 1;
+    
+    initStack(&s);
+    //input the data outside, push in the input
+    
+    do {
+        printf("Enter an operation (1-5):\n");
+        printf("1. Push\n2. Pop\n3. Peek\n4. Visualize\n5. End\nEnter your choice: ");
+        scanf("%d", &choice);
+        
+        switch (choice) {
+            case 1:
+                push(s, st)
+                break;
+            case 2:
+                pop(s, st);
+                break;
+            case 3:
+                peek(s, st);
+                break;
+            case 4:
+                visualize(s);
+                break;
+            case 5:
+                n = 0;
+                printf("Program ended.");
+                break;
+            default:
+                printf("Invalid choice!");
+        }
+        
+    } while (n == 1);
+    
+    return 0;
+}
+
+NEW.C
+HEADER.H
