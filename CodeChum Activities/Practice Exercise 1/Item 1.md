@@ -2,10 +2,10 @@
 
 ## SCENARIO
 The academic registrar evaluates students for the Dean's List. Instead of storing pre-computed GPAs, each student record contains an array of courses
-taken that term, with each course represented by its numeric grade and credit unit value:
-`GPA = Sum(grade * units)/Sum(units)`
-Implement the function:
-`StudentList filterHonorRoll(StudentList studList, float minGpa);`
+taken that term, with each course represented by its numeric grade and credit unit value:<br>
+`GPA = Sum(grade * units)/Sum(units)`<br><br>
+Implement the function:<br>
+`StudentList filterHonorRoll(StudentList studList, float minGpa);`<br><br>
 The function must traverse the master linked list, calculate the weighted GPA for each student, and if the student meets or exceeds minGPA, copy their information (including the calculated GPA) into a newly allocated linked list in the original relative order. The original linked list must remain unmodified.
 
 ### Sample Outputs 
@@ -168,7 +168,7 @@ StudentList filterHonorRoll(StudentList studList, float cutoffGpa) {
 }
 ```
 
-My Thought Process
+### My Thought Process
 ```
 /* STEPS
 GPA = s(grade * units) / s(units)
