@@ -10,27 +10,27 @@ for the graduating class. In our university's grading scale:
 - 5.0 represents failure
 
 Consequently, academic performance is inversely proportional to numeric GPA: a lower GPA indicates higher
-academic achievement (eg., a student with a 1.15 GPA outranks a student with a 1.35 GPA).<br>
+academic achievement (eg., a student with a 1.15 GPA outranks a student with a 1.35 GPA).<br><br>
 A student qualifies for the honors pool if their weighted Grade Point Average (GPA) meets/beats a 
-specified cutoff threshold `(computedGpa <= cutoffGpa)`. The list of qualifying students has already been filtered, but the registrar now needs an automated module to sort and assign official institutional ranks.
+specified cutoff threshold <br>`(computedGpa <= cutoffGpa)`. <br>The list of qualifying students has already been filtered, but the registrar now needs an automated module to sort and assign official institutional ranks.
 
 ### Ranking Mechanism: Standard Competition Ranking ("1224" Scheme)
 
 The ranking must adhere strictly to standard competition rules:
 
-1. Sort Order: The honors list must be ordered by computedGpa in ascending order (lowest numeric value first). If two students have identical GPAs, preserve their original relative arrival order.
-2. First Place: The top student receives Rank 1.
-3. Ties: If two or more students have identical GPAs (evaluated to two decimal places, matching %2f precision), they are assigned the same rank.
-4. Rank Gaps / Accounting for Ties: The rank assigned to the subsequent student must equal their 1-based physical position in the sorted list. In other words, every student who ties consumes a rank number.
-- Example: If two students tie for Rank 1, both are assigned Rank 1. The next student is assigned Rank 3 (Rank 2 is skipped).
-- Example: If three students tie for Rank 4, all three receive Rank 4. The subsequent student receives Rank 7 (Ranks 5 and 6 are skipped).
+1. **Sort Order:** <br>The honors list must be ordered by computedGpa in ascending order (lowest numeric value first). If two students have identical GPAs, preserve their original relative arrival order.
+2. **First Place:** <br>The top student receives Rank 1.
+3. **Ties:** <br>If two or more students have identical GPAs (evaluated to two decimal places, matching %2f precision), they are assigned the same rank.
+4. **Rank Gaps / Accounting for Ties:** <br>The rank assigned to the subsequent student must equal their 1-based physical position in the sorted list. In other words, every student who ties consumes a rank number.
+- *Example:* If two students tie for Rank 1, both are assigned Rank 1. The next student is assigned Rank 3 (Rank 2 is skipped).
+- *Example:* If three students tie for Rank 4, all three receive Rank 4. The subsequent student receives Rank 7 (Ranks 5 and 6 are skipped).
 
 ### Your Task
 Implement the following function in problem.c:
 `void rankHonors(StudentList *honorsList);`
 
 ### Function Specifications
-1. honorsList: A pointer to the head pointer of the filtered honors linked list (StudentList*).
+1. **honorsList:** A pointer to the head pointer of the filtered honors linked list (StudentList*).
 2. Sort the linked list in place (or rearrange node data/pointers) in ascending order of computedGpa.
 3. Traverse the sorted list and assign each student's official ranking integer to curr->data.rank.
 4. If the list is empty (*honorsList == NULL) or contains only one node, handle it cleanly without runtime errors or crashes.
@@ -103,21 +103,24 @@ NO QUALIFIERS
 
 int main(void) {
     int count, order;
-    float minGpa;
+    float cutoffGpa;
 
-    // Input format: <count> <order> <minGpa>
+    // Standard input: <count> <order> <cutoffGpa>
     printf("Input format <count> <order> <minGpa>: ");
-    if (scanf("%d %d %f", &count, &order, &minGpa) != 3) {
+    if (scanf("%d %d %f", &count, &order, &cutoffGpa) != 3) {
         return 0;
     }
 
     StudentList dataset = populateData(count, order);
-    StudentList honors = filterHonorRoll(dataset, minGpa);
+    StudentList honors = filterHonorRoll(dataset, cutoffGpa);
 
     printf("\nDATASET: \n");
     displayStudents(dataset);
 
-    printf("\nHONORS: \n");
+    // Call ranking function
+    rankHonors(&honors);
+
+    printf("\nHONORS RANKING:\n");
     displayStudents(honors);
 
     freeStudents(dataset);
@@ -134,8 +137,8 @@ int main(void) {
 #define MAX_COURSES 10
 
 typedef struct {
-    float grade; // e.g., 3.5, 4.0, 1.0
-    int units;   // e.g., 3, 2, 5
+    float grade; // 1.0 (Highest) to 3.0 (Passing), 5.0 (Fail)
+    int units;   // e.g., 2, 3
 } Course;
 
 typedef struct {
@@ -143,7 +146,8 @@ typedef struct {
     char name[50];
     int courseCount;
     Course courses[MAX_COURSES];
-    float computedGpa; // To be populated by filterHonorRoll
+    float computedGpa; // Populated by filterHonorRoll
+    int rank;          // Populated by rankHonors
 } Student;
 
 typedef struct studNode {
@@ -151,10 +155,13 @@ typedef struct studNode {
     struct studNode* next;
 } StudentNode, *StudentList;
 
-// Computes GPA for each student and returns a new list of students meeting minGpa
-StudentList filterHonorRoll(StudentList studList, float minGpa);
+// FUNCTION TASK: Sorts the honors list in ascending order of GPA (1.00 is best)
+// and assigns competition ranking (1, 2, 2, 4...)
+void rankHonors(StudentList *honorsList);
 
+// Environment Utilities
 StudentList populateData(int count, int order);
+StudentList filterHonorRoll(StudentList studList, float cutoffGpa);
 void appendStudent(StudentList *studList, Student s);
 void displayStudents(StudentList studList);
 void freeStudents(StudentList studList);
@@ -172,58 +179,104 @@ ANSWER:
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "cis2101.h"
 
+// Helper comparison for floating-point 2-decimal rounded equality
+static int isSameGPA(float gpa1, float gpa2) {
+    int r1 = (int)roundf(gpa1 * 100.0f);
+    int r2 = (int)roundf(gpa2 * 100.0f);
+    return r1 == r2;
+}
+
 // ============================================================================
-// STUDENT DELIVERABLE FUNCTION
-// (Note: Qualifies when computed GPA <= cutoffGpa)
+// STUDENT TASK: SORT & ASSIGN COMPETITION RANK (1, 2, 2, 4...)
 // ============================================================================
-StudentList filterHonorRoll(StudentList studList, float cutoffGpa) {
-    StudentList honorList = NULL;
-    StudentList *last = &honorList;
+void rankHonors(StudentList *honorsList) {
 
-    for (StudentList curr = studList; curr != NULL; curr = curr->next) {
-
-        float gpa = calculateGPA(curr->data);
-
-        if (gpa <= cutoffGpa) {
-
-            StudentList newNode = malloc(sizeof(StudentNode));
-
-            newNode->data = curr->data;
-
-            newNode->data.computedGpa = gpa;
-
-            newNode->next = NULL;
-
-            *last = newNode;
-            last = &newNode->next;
-        }
+    if (honorsList == NULL || *honorsList == NULL) {
+        return;
     }
 
-    return honorList;
+    // Traversal #1 = Sort the nodes
+
+    int swapped;
+
+    do {
+        swapped = 0;
+        StudentList *curr = honorsList;
+
+        while (*curr != NULL && (*curr)->next != NULL) {
+
+            StudentList next = (*curr)->next;
+            if ((*curr)->data.computedGpa > next->data.computedGpa) {
+
+                (*curr)->next = next->next;
+                next->next = *curr;
+                *curr = next;
+
+                swapped = 1;
+            }
+
+            curr = &(*curr)->next;
+        }
+
+    } while (swapped);
+
+    // Traversal #2 = Assign ranks
+
+    int position = 1;
+    int rank = 1;
+
+    StudentList curr = *honorsList;
+
+    while (curr != NULL) {
+
+        if (curr == *honorsList) {
+            curr->data.rank = 1;
+        }
+        else if (isSameGPA(
+                    curr->data.computedGpa,
+                    curr->next == NULL
+                        ? curr->data.computedGpa
+                        : curr->data.computedGpa)) {
+        }
+
+        curr = curr->next;
+    }
+
+    curr = *honorsList;
+    position = 1;
+    rank = 1;
+
+    float previousGpa = curr->data.computedGpa;
+
+    while (curr != NULL) {
+
+        if (position == 1) {
+            rank = 1;
+        }
+        else if (!isSameGPA(curr->data.computedGpa, previousGpa)) {
+            rank = position;
+        }
+
+        curr->data.rank = rank;
+
+        previousGpa = curr->data.computedGpa;
+        position++;
+        curr = curr->next;
+    }
 }
 ```
 
 My Thought Process
 ```
-/* STEPS
-GPA = s(grade * units) / s(units)
-
-1. Traverse master linked studList
-2. Calculate weighted GPA per StudentList -> calculateGPA()
-3. If student <= minGPA
-3a. copy information including calculated GPA into 
-3b. newly allocated linked list in original relative order 
--- DO NOT MODIFY ORIGINAL LINKED LIST
-*/
-
-// call: StudentList honors = filterHonorRoll(dataset, minGpa);
-
 /*
+#define MAX_COURSES 10
+
 typedef struct {
-    float grade; // e.g., 3.5, 4.0, 1.0
-    int units;   // e.g., 3, 2, 5
+    float grade; // 1.0 (Highest) to 3.0 (Passing), 5.0 (Fail)
+    int units;   // e.g., 2, 3
 } Course;
 
 typedef struct {
@@ -231,12 +284,26 @@ typedef struct {
     char name[50];
     int courseCount;
     Course courses[MAX_COURSES];
-    float computedGpa; // To be populated by filterHonorRoll
+    float computedGpa; // Populated by filterHonorRoll
+    int rank;          // Populated by rankHonors
 } Student;
 
 typedef struct studNode {
     Student data;
     struct studNode* next;
 } StudentNode, *StudentList;
+
+// FUNCTION TASK: Sorts the honors list in ascending order of GPA (1.00 is best)
+// and assigns competition ranking (1, 2, 2, 4...)
+
+void rankHonors(StudentList *honorsList);
+
+
+STEPS:
+1. Traverse through Honor list with curr
+2. If curr < next node (eg. 1.0 < 1.5), then swap the two nodes
+2a. next of curr = next of the next node
+3. Traverse again, assign int rank based on position
+3a. Check if curr and the node/s after have the same GPA, rank = position doesn't execute
 */
 ```
