@@ -151,16 +151,18 @@ StudentList filterHonorRoll(StudentList studList, float cutoffGpa) {
 
         if (gpa <= cutoffGpa) {
 
+            /*
             StudentList newNode = malloc(sizeof(StudentNode));
 
             newNode->data = curr->data;
-
             newNode->data.computedGpa = gpa;
-
             newNode->next = NULL;
 
             *last = newNode;
             last = &newNode->next;
+            */
+            
+            // OR YOU CAN JUST USE appendStudent(&last, s); to replace the code above
         }
     }
 
