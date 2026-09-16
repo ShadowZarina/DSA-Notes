@@ -1,6 +1,8 @@
 # DSA-Notes
 A collection of lessons, notes, and code from University of San Carlos (USC)'s Data Structures and Algorithms (DSA) course, also known as CIS 2101. This also includes repositories from former students, as well as notes, websites and resources from external sources, which may or may not be directly involved in the current or future curricula.
 
+(NOTE: This repository is being updated in real time since the creator is also taking DSA) :)
+
 # Topics
 
 ## FIRST SEMESTER
