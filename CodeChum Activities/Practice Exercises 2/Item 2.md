@@ -27,6 +27,8 @@ Return Values:
 - Return 1 on successful deletion and copy to *deletedRecord.
 - Return 0 if the list is empty or targetID does not exist.
 
+### Sample Outputs
+
 Sample Output 1
 ```
 Enter number of students to populate: 0
@@ -94,9 +96,118 @@ Enter which student to delete: 1042
   [1] ID: 1088  | Charlie Brown      | BSIS   | Yr 3 ->
   NULL
 ```
+## CODE
 
-## STRUCT AND FUNCTION PROTOTYPE
-(myheader.h)
+### main.c
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "myheader.h"
+
+int main(void) {
+    // Master pool of 30 prepopulated students
+    const Student POOL[POOL_SIZE] = {
+        {1042, "Alice Smith",       "BSIT",   2}, // [0]
+        {1005, "Bob Vance",         "BSCS",   1}, // [1]
+        {1088, "Charlie Brown",     "BSIS",   3}, // [2]
+        {1015, "Diana Prince",      "BSECE",  2}, // [3]
+        {1071, "Evan Wright",       "BSBA",   4}, // [4]
+        {1050, "Fiona Gallagher",   "BSIT",   1}, // [5]
+        {1028, "George Clark",      "BSCS",   3}, // [6]
+        {1095, "Hannah Abbott",     "BSIS",   2}, // [7]
+        {1063, "Ian Malcolm",       "BSMATH", 4}, // [8]
+        {1010, "Julia Roberts",     "BSIT",   1}, // [9]
+        {1033, "Kevin Bacon",       "BSCS",   2}, // [10]
+        {1079, "Laura Croft",       "BSCE",   3}, // [11]
+        {1001, "Michael Scott",     "BSBA",   1}, // [12] Minimum ID
+        {1055, "Nancy Wheeler",     "BSIT",   2}, // [13]
+        {1082, "Oscar Martinez",    "BSCS",   4}, // [14]
+        {1022, "Peter Parker",      "BSBIO",  1}, // [15]
+        {1068, "Quinn Fabray",      "BSIS",   2}, // [16]
+        {1099, "Riley Reid",        "BSN",    3}, // [17] Maximum ID
+        {1045, "Sam Winchester",    "BSIT",   1}, // [18]
+        {1019, "Thea Queen",        "BSCS",   4}, // [19]
+        {1037, "Steve Rogers",      "BSBA",   3}, // [20]
+        {1090, "Tony Stark",        "BSECE",  4}, // [21]
+        {1008, "Uma Thurman",       "BSIT",   1}, // [22]
+        {1047, "Victor Stone",      "BSCS",   2}, // [23]
+        {1075, "Wanda Maximoff",    "BSIS",   3}, // [24]
+        {1025, "Xander Harris",     "BSIT",   2}, // [25]
+        {1060, "Yvonne Strahovski", "BSCS",   4}, // [26]
+        {1018, "Zack Snyder",       "BSCE",   1}, // [27]
+        {1052, "Arthur Dent",       "BSMATH", 2}, // [28]
+        {1085, "Bruce Banner",      "BSBIO",  4}  // [29]
+    };
+
+    // 1. Read how many students to populate
+    int numPopulate;
+    printf("Enter number of students to populate: ");
+    if (scanf("%d", &numPopulate) != 1 || numPopulate < 0) {
+        return 0;
+    }
+
+    Student initialInputs[numPopulate];
+    int validCount = 0;
+
+    // Buffer selected records from POOL
+    printf("Enter record numbers from the pool: ");
+    for (int i = 0; i < numPopulate; i++) {
+        int poolIndex;
+        if (scanf("%d", &poolIndex) != 1) {
+            break;
+        }
+        if (poolIndex >= 0 && poolIndex < POOL_SIZE) {
+            initialInputs[validCount++] = POOL[poolIndex];
+        }
+    }
+    printf("\n");
+
+    // 2. Display raw selected data
+    printInitialInputs(initialInputs, validCount);
+
+    // 3. Build initial linked list
+    StudentLinkedList list = NULL;
+    for (int i = 0; i < validCount; i++) {
+        appendStudent(&list, initialInputs[i]);
+    }
+
+    printf("\n");
+    printLinkedList(list, "=== INITIAL LINKED LIST (BUILT FROM APPEND) ===");
+
+    // 4. Read deletion operations
+    int numDeletions;
+    printf("Enter number of students to delete: ");
+    if (scanf("%d", &numDeletions) != 1 || numDeletions < 0) {
+        clearList(&list);
+        return 0;
+    }
+
+    // 5. Process deletions and display log
+    printf("\n=== DELETION PROCESS ===\n");
+    printf("Enter which student to delete: ");
+    for (int i = 0; i < numDeletions; i++) {
+        int targetID;
+        if (scanf("%d", &targetID) != 1) {
+            break;
+        }
+
+        Student removedRecord = {0};
+        int status = deleteStudent(&list, targetID, &removedRecord);
+        printDeleteLog(targetID, status, &removedRecord);
+    }
+
+    // 6. Display final list state
+    printf("\n");
+    printLinkedList(list, "=== FINAL LINKED LIST (AFTER DELETIONS) ===");
+
+    // Free remaining allocated memory
+    clearList(&list);
+
+    return 0;
+}
+```
+### myheader.h
 
 ```
 #ifndef MYHEADER_H
@@ -150,7 +261,7 @@ void clearList(StudentLinkedList *head);
 #endif
 ```
 
-## ANSWER CODE
+### ANSWER CODE
 (answer.c)
 
 ```
