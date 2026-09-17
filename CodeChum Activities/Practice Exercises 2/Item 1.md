@@ -17,6 +17,8 @@ Specifications:
 - Update State: Place newStudent into the opened slot, increment list->count by 1, and return 1 to indicate success.
  
 
+### Sample Outputs
+
 Sample Output 1
 ```
 Enter number of operations: 3
@@ -81,8 +83,90 @@ Total Items Entered: 3
   [2] ID: 1015  | Diana Prince       | BSECE  | Yr 2
 ```
 
-## STRUCT AND FUNCTION PROTOTYPE
-(myheader.h)
+## CODE
+
+### main.c
+```
+#include <stdio.h>
+#include <string.h>
+#include "myheader.h"
+
+int main(void) {
+    const Student POOL[POOL_SIZE] = {
+        {1042, "Alice Smith",       "BSIT",   2}, // [0]
+        {1005, "Bob Vance",         "BSCS",   1}, // [1]
+        {1088, "Charlie Brown",     "BSIS",   3}, // [2]
+        {1015, "Diana Prince",      "BSECE",  2}, // [3]
+        {1071, "Evan Wright",       "BSBA",   4}, // [4]
+        {1050, "Fiona Gallagher",   "BSIT",   1}, // [5]
+        {1028, "George Clark",      "BSCS",   3}, // [6]
+        {1095, "Hannah Abbott",     "BSIS",   2}, // [7]
+        {1063, "Ian Malcolm",       "BSMATH", 4}, // [8]
+        {1010, "Julia Roberts",     "BSIT",   1}, // [9]
+        {1033, "Kevin Bacon",       "BSCS",   2}, // [10]
+        {1079, "Laura Croft",       "BSCE",   3}, // [11]
+        {1001, "Michael Scott",     "BSBA",   1}, // [12] Min ID
+        {1055, "Nancy Wheeler",     "BSIT",   2}, // [13]
+        {1082, "Oscar Martinez",    "BSCS",   4}, // [14]
+        {1022, "Peter Parker",      "BSBIO",  1}, // [15]
+        {1068, "Quinn Fabray",      "BSIS",   2}, // [16]
+        {1099, "Riley Reid",        "BSN",    3}, // [17] Max ID
+        {1042, "Alice Twin",        "BSIT",   1}, // [18] Duplicate ID (1042)
+        {1015, "Diana Double",      "BSCS",   4}, // [19] Duplicate ID (1015)
+        {1037, "Steve Rogers",      "BSBA",   3}, // [20]
+        {1090, "Tony Stark",        "BSECE",  4}, // [21]
+        {1008, "Uma Thurman",       "BSIT",   1}, // [22]
+        {1047, "Victor Stone",      "BSCS",   2}, // [23]
+        {1075, "Wanda Maximoff",    "BSIS",   3}, // [24]
+        {1025, "Xander Harris",     "BSIT",   2}, // [25]
+        {1060, "Yvonne Strahovski", "BSCS",   4}, // [26]
+        {1018, "Zack Snyder",       "BSCE",   1}, // [27]
+        {1052, "Arthur Dent",       "BSMATH", 2}, // [28]
+        {1085, "Bruce Banner",      "BSBIO",  4}  // [29]
+    };
+
+    int numOperations;
+    printf("Enter number of operations: ");
+    if (scanf("%d", &numOperations) != 1 || numOperations < 0) {
+        return 0;
+    }
+
+    Student initialInputs[numOperations];
+    int validCount = 0;
+
+    // 1. Buffer selected student records
+    printf("Enter selected students: ");
+    for (int i = 0; i < numOperations; i++) {
+        int poolIndex;
+        if (scanf("%d", &poolIndex) != 1) {
+            break;
+        }
+        if (poolIndex >= 0 && poolIndex < POOL_SIZE) {
+            initialInputs[validCount++] = POOL[poolIndex];
+        }
+    }
+    printf("\n\n");
+
+    // 2. Display raw input sequence
+    printInitialInputs(initialInputs, validCount);
+
+    // 3. Process records into the sorted archive
+    StudentArrayList archive = {.count = 0};
+
+    printf("\n=== INSERTION PROCESS ===\n");
+    for (int i = 0; i < validCount; i++) {
+        int status = insertSortedStudent(&archive, initialInputs[i]);
+        printInsertionLog(&initialInputs[i], status);
+    }
+
+    // 4. Display sorted result
+    printf("\n");
+    printArchive(&archive, "=== FINAL ARCHIVE STATE (SORTED) ===");
+
+    return 0;
+}
+```
+### myheader.h
 
 ```
 #ifndef MYHEADER_H
