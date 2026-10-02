@@ -1,6 +1,6 @@
 // Problem Provided by Miss Sabado
 
-# Coding Problem: Book Genre Hash Table with Separate Chaining
+# CODING PROBLEM: Book Genre Hash Table with Separate Chaining
 
 Implement a hash table of books grouped by genre using separate chaining to handle collisions.
 
@@ -147,3 +147,5 @@ void insert(BookShelf *D, Book toInsert);
 void displayHash(BookShelf D);
 ```
 Use the provided structures and implement the hash table using linked lists and separate chaining.
+
+# ANSWER
