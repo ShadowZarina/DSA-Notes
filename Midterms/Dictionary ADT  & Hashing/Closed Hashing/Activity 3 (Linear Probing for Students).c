@@ -125,7 +125,10 @@ void displayDictionary(ClosedDict D) {
  * Set all slots' status field to EMPTY (-1) and data.enrolled pointers to NULL.
  */
 void initDict(ClosedDict D) {
-    // TODO: Write your code here
+    for (int i = 0; i < MAX; i++) {
+        D[i].status = EMPTY;
+        D[i].data.enrolled = NULL;
+    }
 }
 
 /**
@@ -135,7 +138,19 @@ void initDict(ClosedDict D) {
  * 3. Copy student data into target slot and set status to 0 (Occupied).
  */
 void insertStudent(ClosedDict D, Student s) {
-    // TODO: Write your code here
+    int H = HASH(s.studentID);
+
+    for (int i = 0; i < MAX; i++) {
+        int index = (H + i) % MAX;
+
+        if (D[index].status == EMPTY || D[index].status == DELETED) {
+            D[index].data = s;
+            D[index].status = 0;
+            return;
+        }
+    }
+
+    printf("Dictionary is full. Student %d cannot be inserted.\n", s.studentID);
 }
 
 /**
@@ -145,7 +160,32 @@ void insertStudent(ClosedDict D, Student s) {
  * 3. Set slot status to DELETED (-2).
  */
 void deleteStudent(ClosedDict D, int studentID) {
-    // TODO: Write your code here
+    int H = HASH(studentID);
+
+    for (int i = 0; i < MAX; i++) {
+        int index = (H + i) % MAX;
+
+        if (D[index].status == EMPTY) {
+            return;
+        }
+
+        if (D[index].status == 0 &&
+            D[index].data.studentID == studentID) {
+
+            CourseNode *curr = D[index].data.enrolled;
+
+            while (curr != NULL) {
+                CourseNode *temp = curr;
+                curr = curr->next;
+                free(temp);
+            }
+
+            D[index].data.enrolled = NULL;
+            D[index].status = DELETED;
+
+            return;
+        }
+    }
 }
 
 // ============================================================================
