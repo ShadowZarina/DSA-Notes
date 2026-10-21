@@ -63,16 +63,6 @@ void insertDict(OpenDict D, char elem) {
 
 }
 
-
-// // Node structure for linked list bucket
-// typedef struct node {
-//     char elem;
-//     struct node *next;
-// } Node, *NodePtr;
-
-// typedef NodePtr OpenDict[MAX];
-
-
 void deleteDict(OpenDict D, char elem) {
     // TODO: Search linked list at D[HASH(elem)], unlink target node, and free memory
     int hash = HASH(elem);
