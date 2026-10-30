@@ -5,7 +5,7 @@ Max Heap · write one function:
 _int lastGolem(MaxHeap *H)_
 
 ## Story Version
-Welcome to the Golem Arena! The crowd only wants to see the two heaviest golems fight.<br>
+Welcome to the Golem Arena! The crowd only wants to see the two heaviest golems fight.<br><br>
 Every round, the two heaviest golems step into the ring and smash into each other:<br>
 - If they weigh the same, both shatter into dust.
 - If one is heavier, the lighter golem is destroyed. The heavier golem survives but loses weight equal to the lighter golem's weight, and it limps back into the waiting line.
@@ -15,7 +15,8 @@ Every round, the two heaviest golems step into the ring and smash into each othe
 Given a max heap of N positive integers, repeat until at most one value remains:
 - Remove the largest value a and the second largest value b.
 - If a != b, insert a - b.
-  - Return the last remaining value, or 0 if the heap is empty.
+
+Return the last remaining value, or 0 if the heap is empty.
 
 ## Sample Outputs
 ### Sample Output 1
