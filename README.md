@@ -3,10 +3,10 @@ A collection of lessons, notes, and code from University of San Carlos (USC)'s D
 
 (NOTE: This repository is being updated in real time since the creator is also taking DSA) :)
 
-## Notes & Reviewers
+# My Document
 
-Click the link below to access my DSA Notes & Reviewers 2026 Document! 
-(DSA Notes & Reviewers 2026)[https://docs.google.com/document/d/1MRt_gOy-Ci5bT2QixDijFgPZEFHq5ZZWeasqnFlIaxo/edit?usp=sharing]
+Click the link below to access my DSA Notes & Reviewers 2026 Document! <br> 
+[DSA Notes & Reviewers 2026](https://docs.google.com/document/d/1MRt_gOy-Ci5bT2QixDijFgPZEFHq5ZZWeasqnFlIaxo/edit?usp=sharing)
 # Topics
 
 ## FIRST SEMESTER
